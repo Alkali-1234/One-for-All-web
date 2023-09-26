@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oneforall/interstitial_ad.dart';
+// import 'package:oneforall/interstitial_ad.dart';
 
 class InterstitialScreen extends StatelessWidget {
   const InterstitialScreen({super.key, required this.onClosed, required this.onFailed});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:oneforall/banner_ad.dart';
+// import 'package:oneforall/banner_ad.dart';
 import 'package:oneforall/main.dart';
 import 'package:oneforall/screens/forum_screen.dart';
 import 'package:oneforall/screens/premium_screen.dart';
@@ -40,7 +40,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
                 child: LayoutBuilder(builder: (context, constraints) {
                   return Column(
                     children: [
-                      Text("Self Development", style: textTheme.displayMedium),
+                      FittedBox(child: Text("Self Development", style: textTheme.displayMedium)),
                       const Divider(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -108,7 +108,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
                 child: LayoutBuilder(builder: (context, constraints) {
                   return Column(
                     children: [
-                      Text("Tools", style: textTheme.displayMedium),
+                      FittedBox(child: Text("Tools", style: textTheme.displayMedium)),
                       const Divider(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -164,7 +164,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
                 child: LayoutBuilder(builder: (context, constraints) {
                   return Column(
                     children: [
-                      Text("Community & Other", style: textTheme.displayMedium),
+                      FittedBox(child: Text("Community & Other", style: textTheme.displayMedium)),
                       const Divider(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

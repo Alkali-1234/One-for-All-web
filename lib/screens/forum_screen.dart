@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:oneforall/banner_ad.dart';
+// import 'package:oneforall/banner_ad.dart';
 import 'package:oneforall/constants.dart';
 import 'package:oneforall/screens/thread_screen.dart';
 import 'package:provider/provider.dart';
@@ -172,7 +172,9 @@ class _ForumScreenState extends State<ForumScreen> with TickerProviderStateMixin
             "Forums",
             style: ttm.displayMedium,
           ),
-          backgroundColor: tm.background,
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
           foregroundColor: tm.onBackground,
           elevation: 0,
           leading: IconButton(

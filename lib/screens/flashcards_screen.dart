@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:oneforall/banner_ad.dart';
+// import 'package:oneforall/banner_ad.dart';
 import 'package:oneforall/constants.dart';
 import 'package:oneforall/main.dart';
 import 'package:provider/provider.dart';

@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:animations/animations.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:oneforall/banner_ad.dart';
+// import 'package:oneforall/banner_ad.dart';
 import 'package:oneforall/components/main_container.dart';
 import 'package:oneforall/constants.dart';
 import 'package:oneforall/functions/quizzes_functions.dart';
 import 'package:oneforall/main.dart';
 import 'package:oneforall/models/quizzes_models.dart';
-import 'package:oneforall/screens/interstitial_screen.dart';
+// import 'package:oneforall/screens/interstitial_screen.dart';
 import 'package:provider/provider.dart';
 import './flashcardsPlay_screen.dart';
 import 'package:just_audio/just_audio.dart';
@@ -165,12 +165,16 @@ class _PlayScreenState extends State<PlayScreen> {
         elapsedTime++;
       });
     });
-    audioPlayer.setAsset("assets/audio/quizAudio.mp3");
-    audioPlayer.setLoopMode(LoopMode.one);
-    audioPlayer.play();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       showDialog(context: context, builder: (context) => const ThreeTwoOneGoRibbon(), barrierDismissible: false);
     });
+  }
+
+  void initializeMusic() async {
+    await audioPlayer.setAsset("assets/audio/quizAudio.mp3");
+    await audioPlayer.setLoopMode(LoopMode.one);
+    audioPlayer.play();
   }
 
   //* Variables

@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:oneforall/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +67,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
     prefs.setBool("setting_notifications_LAC", notificationSettings["LAC"]!);
     prefs.setBool("setting_notifications_RecentActivity", notificationSettings["RA"]!);
 
-    var appState = context.read<AppState>();
+    // var appState = context.read<AppState>();
 
     //* Subscribe and unsubscribe from topics
     // if (notificationSettings["MAB"]!) {
@@ -182,341 +182,351 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Positioned.fill(
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: theme.primaryContainer,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Flexible(flex: 1, child: SizedBox()),
+              Flexible(
+                flex: 1,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                  child: Stack(
+                    alignment: Alignment.center,
                     children: [
-                      //* Back button
-                      Column(
-                        children: [
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: IconButton(
-                              onPressed: () {
-                                if (currentLoading != 0) return;
-                                if (Theme.of(context) != passedUserTheme) {
-                                  appState.currentUserSelectedTheme = passedUserTheme;
-                                }
-                                Navigator.pop(context);
-                              },
-                              icon: Icon(
-                                Icons.arrow_back,
-                                color: theme.onBackground,
-                              ),
+                      Positioned.fill(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: theme.primaryContainer,
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          //* Settings icon
-                          Hero(
-                            tag: "settings",
-                            child: Icon(
-                              Icons.settings,
-                              size: 100,
-                              color: theme.onBackground,
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          Text("Settings",
-                              style: textTheme.displayMedium!.copyWith(
-                                color: theme.onBackground,
-                              )),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            //* Back button
+                            Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: IconButton(
+                                    onPressed: () {
+                                      if (currentLoading != 0) return;
+                                      if (Theme.of(context) != passedUserTheme) {
+                                        appState.currentUserSelectedTheme = passedUserTheme;
+                                      }
+                                      Navigator.pop(context);
+                                    },
+                                    icon: Icon(
+                                      Icons.arrow_back,
+                                      color: theme.onBackground,
+                                    ),
+                                  ),
+                                ),
+                                //* Settings icon
+                                Hero(
+                                  tag: "settings",
+                                  child: Icon(
+                                    Icons.settings,
+                                    size: 100,
+                                    color: theme.onBackground,
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                Text("Settings",
+                                    style: textTheme.displayMedium!.copyWith(
+                                      color: theme.onBackground,
+                                    )),
 
-                          const SizedBox(height: 20),
-                          //* User info card
-                          Card(
-                            color: theme.secondary,
-                            elevation: 0,
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  CircleAvatar(
-                                      radius: 30,
-                                      backgroundImage: NetworkImage(
-                                        appState.getCurrentUser.profilePicture == "" ? "https://picsum.photos/200" : appState.getCurrentUser.profilePicture,
-                                      )),
-                                  const SizedBox(width: 16.0),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
+                                const SizedBox(height: 20),
+                                //* User info card
+                                Card(
+                                  color: theme.secondary,
+                                  elevation: 0,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        CircleAvatar(
+                                            radius: 30,
+                                            backgroundImage: NetworkImage(
+                                              appState.getCurrentUser.profilePicture == "" ? "https://picsum.photos/200" : appState.getCurrentUser.profilePicture,
+                                            )),
+                                        const SizedBox(width: 16.0),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              appState.getCurrentUser.username,
+                                              style: textTheme.displaySmall!.copyWith(fontWeight: FontWeight.bold),
+                                              textAlign: TextAlign.end,
+                                            ),
+                                            Text(
+                                              appState.getCurrentUser.email,
+                                              style: textTheme.displaySmall,
+                                              textAlign: TextAlign.end,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+
+                                const SizedBox(height: 10),
+                                Text("Theme", style: textTheme.displaySmall),
+                                const SizedBox(height: 10),
+                                //* Theme switch (Great Default Blue, Clean Dark, Bright Light), use tabbarview
+                                SizedBox(
+                                  height: 50,
+                                  width: double.infinity,
+                                  child: DefaultTabController(
+                                    length: _themes.length,
+                                    child: Builder(builder: (context) {
+                                      _tabController = DefaultTabController.of(context);
+                                      _tabController.addListener(() {
+                                        debugPrint("Selected Index: ${_tabController.index}");
+                                        if (!_tabController.indexIsChanging) {
+                                          setState(() {
+                                            selectedTheme = _tabController.index;
+                                          });
+                                          //* change theme
+                                          switch (_tabController.index) {
+                                            case 0:
+                                              setState(() {
+                                                appState.currentUserSelectedTheme = defaultBlueTheme;
+                                              });
+                                              break;
+                                            case 1:
+                                              setState(() {
+                                                appState.currentUserSelectedTheme = darkTheme;
+                                              });
+                                              break;
+                                            case 2:
+                                              setState(() {
+                                                appState.currentUserSelectedTheme = lightTheme;
+                                              });
+                                              break;
+                                            default:
+                                              debugPrint("Invalid theme index");
+                                          }
+                                        }
+                                      });
+                                      return TabBarView(
+                                        controller: _tabController,
+                                        children: _themes
+                                            .map((Tab tab) => Padding(
+                                                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      color: theme.secondary,
+                                                      borderRadius: BorderRadius.circular(10),
+                                                    ),
+                                                    child: Center(
+                                                        child: Text(
+                                                      tab.text!,
+                                                      style: textTheme.displaySmall,
+                                                    )),
+                                                  ),
+                                                ))
+                                            .toList(),
+                                      );
+                                    }),
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                //* Current theme three dots indicator
+                                SizedBox(
+                                  height: 10,
+                                  width: 50,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        appState.getCurrentUser.username,
-                                        style: textTheme.displaySmall!.copyWith(fontWeight: FontWeight.bold),
-                                        textAlign: TextAlign.end,
+                                      GestureDetector(
+                                        onTap: () {
+                                          _tabController.animateTo(0);
+                                        },
+                                        child: Container(
+                                          height: 10,
+                                          width: 10,
+                                          decoration: BoxDecoration(
+                                            color: selectedTheme == 0 ? theme.onBackground : theme.primaryContainer,
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                        ),
                                       ),
-                                      Text(
-                                        appState.getCurrentUser.email,
-                                        style: textTheme.displaySmall,
-                                        textAlign: TextAlign.end,
+                                      GestureDetector(
+                                        onTap: () {
+                                          _tabController.animateTo(1);
+                                        },
+                                        child: Container(
+                                          height: 10,
+                                          width: 10,
+                                          decoration: BoxDecoration(
+                                            color: selectedTheme == 1 ? theme.onBackground : theme.primaryContainer,
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          _tabController.animateTo(2);
+                                        },
+                                        child: Container(
+                                          height: 10,
+                                          width: 10,
+                                          decoration: BoxDecoration(
+                                            color: selectedTheme == 2 ? theme.onBackground : theme.primaryContainer,
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
-                            ),
-                          ),
-
-                          const SizedBox(height: 10),
-                          Text("Theme", style: textTheme.displaySmall),
-                          const SizedBox(height: 10),
-                          //* Theme switch (Great Default Blue, Clean Dark, Bright Light), use tabbarview
-                          SizedBox(
-                            height: 50,
-                            width: double.infinity,
-                            child: DefaultTabController(
-                              length: _themes.length,
-                              child: Builder(builder: (context) {
-                                _tabController = DefaultTabController.of(context);
-                                _tabController.addListener(() {
-                                  debugPrint("Selected Index: ${_tabController.index}");
-                                  if (!_tabController.indexIsChanging) {
-                                    setState(() {
-                                      selectedTheme = _tabController.index;
-                                    });
-                                    //* change theme
-                                    switch (_tabController.index) {
-                                      case 0:
-                                        setState(() {
-                                          appState.currentUserSelectedTheme = defaultBlueTheme;
-                                        });
-                                        break;
-                                      case 1:
-                                        setState(() {
-                                          appState.currentUserSelectedTheme = darkTheme;
-                                        });
-                                        break;
-                                      case 2:
-                                        setState(() {
-                                          appState.currentUserSelectedTheme = lightTheme;
-                                        });
-                                        break;
-                                      default:
-                                        debugPrint("Invalid theme index");
-                                    }
-                                  }
-                                });
-                                return TabBarView(
-                                  controller: _tabController,
-                                  children: _themes
-                                      .map((Tab tab) => Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color: theme.secondary,
-                                                borderRadius: BorderRadius.circular(10),
-                                              ),
-                                              child: Center(
-                                                  child: Text(
-                                                tab.text!,
-                                                style: textTheme.displaySmall,
-                                              )),
+                                ),
+                                //* Notification settings
+                                const SizedBox(height: 10),
+                                Text("Notification Settings", style: textTheme.displaySmall),
+                                const SizedBox(height: 5),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Flexible(
+                                        flex: 1,
+                                        child: Column(
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text("MAB", style: textTheme.displaySmall),
+                                                Checkbox(
+                                                    value: notificationSettings["MAB"],
+                                                    onChanged: (value) => setState(() {
+                                                          notificationSettings["MAB"] = !notificationSettings["MAB"]!;
+                                                        }))
+                                              ],
                                             ),
-                                          ))
-                                      .toList(),
-                                );
-                              }),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text("LAC", style: textTheme.displaySmall),
+                                                Checkbox(
+                                                    value: notificationSettings["LAC"],
+                                                    onChanged: (value) => setState(() {
+                                                          notificationSettings["LAC"] = !notificationSettings["LAC"]!;
+                                                        }))
+                                              ],
+                                            ),
+                                          ],
+                                        )),
+                                    Flexible(
+                                        flex: 1,
+                                        child: Column(
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text("Recent Activity", style: textTheme.displaySmall),
+                                                Checkbox(
+                                                    value: notificationSettings["RA"],
+                                                    onChanged: (value) => setState(() {
+                                                          notificationSettings["RA"] = !notificationSettings["RA"]!;
+                                                        }))
+                                              ],
+                                            )
+                                          ],
+                                        ))
+                                  ],
+                                )
+                              ],
                             ),
-                          ),
-                          const SizedBox(height: 5),
-                          //* Current theme three dots indicator
-                          SizedBox(
-                            height: 10,
-                            width: 50,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //* Save button
+                            Column(
                               children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    _tabController.animateTo(0);
-                                  },
-                                  child: Container(
-                                    height: 10,
-                                    width: 10,
-                                    decoration: BoxDecoration(
-                                      color: selectedTheme == 0 ? theme.onBackground : theme.primaryContainer,
-                                      borderRadius: BorderRadius.circular(10),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      debugPrint("Save pressed");
+                                      saveSettings();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: theme.secondary,
+                                      shadowColor: Colors.transparent,
+                                      side: BorderSide(color: theme.tertiary),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      "Save",
+                                      style: textTheme.displaySmall,
                                     ),
                                   ),
                                 ),
-                                GestureDetector(
-                                  onTap: () {
-                                    _tabController.animateTo(1);
-                                  },
-                                  child: Container(
-                                    height: 10,
-                                    width: 10,
-                                    decoration: BoxDecoration(
-                                      color: selectedTheme == 1 ? theme.onBackground : theme.primaryContainer,
-                                      borderRadius: BorderRadius.circular(10),
+                                //* Clear cache and logout button
+                                const SizedBox(height: 10),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      showDialog(context: context, builder: (_) => ConfirmationModal(clearCacheFunction: clearCache));
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: theme.secondary,
+                                      shadowColor: Colors.transparent,
+                                      side: BorderSide(color: theme.tertiary),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      "Clear Cache",
+                                      style: textTheme.displaySmall,
                                     ),
                                   ),
                                 ),
-                                GestureDetector(
-                                  onTap: () {
-                                    _tabController.animateTo(2);
-                                  },
-                                  child: Container(
-                                    height: 10,
-                                    width: 10,
-                                    decoration: BoxDecoration(
-                                      color: selectedTheme == 2 ? theme.onBackground : theme.primaryContainer,
-                                      borderRadius: BorderRadius.circular(10),
+                                const SizedBox(height: 10),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      debugPrint("Logout pressed");
+                                      logoutUser();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: theme.error,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      "Logout",
+                                      style: textTheme.displaySmall,
                                     ),
                                   ),
                                 ),
                               ],
                             ),
-                          ),
-                          //* Notification settings
-                          const SizedBox(height: 10),
-                          Text("Notification Settings", style: textTheme.displaySmall),
-                          const SizedBox(height: 5),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                  flex: 1,
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text("MAB", style: textTheme.displaySmall),
-                                          Checkbox(
-                                              value: notificationSettings["MAB"],
-                                              onChanged: (value) => setState(() {
-                                                    notificationSettings["MAB"] = !notificationSettings["MAB"]!;
-                                                  }))
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text("LAC", style: textTheme.displaySmall),
-                                          Checkbox(
-                                              value: notificationSettings["LAC"],
-                                              onChanged: (value) => setState(() {
-                                                    notificationSettings["LAC"] = !notificationSettings["LAC"]!;
-                                                  }))
-                                        ],
-                                      ),
-                                    ],
-                                  )),
-                              Flexible(
-                                  flex: 1,
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text("Recent Activity", style: textTheme.displaySmall),
-                                          Checkbox(
-                                              value: notificationSettings["RA"],
-                                              onChanged: (value) => setState(() {
-                                                    notificationSettings["RA"] = !notificationSettings["RA"]!;
-                                                  }))
-                                        ],
-                                      )
-                                    ],
-                                  ))
-                            ],
-                          )
-                        ],
-                      ),
-                      //* Save button
-                      Column(
-                        children: [
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                debugPrint("Save pressed");
-                                saveSettings();
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: theme.secondary,
-                                shadowColor: Colors.transparent,
-                                side: BorderSide(color: theme.tertiary),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                              child: Text(
-                                "Save",
-                                style: textTheme.displaySmall,
-                              ),
-                            ),
-                          ),
-                          //* Clear cache and logout button
-                          const SizedBox(height: 10),
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                showDialog(context: context, builder: (_) => ConfirmationModal(clearCacheFunction: clearCache));
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: theme.secondary,
-                                shadowColor: Colors.transparent,
-                                side: BorderSide(color: theme.tertiary),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                              child: Text(
-                                "Clear Cache",
-                                style: textTheme.displaySmall,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                debugPrint("Logout pressed");
-                                logoutUser();
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: theme.error,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                              child: Text(
-                                "Logout",
-                                style: textTheme.displaySmall,
-                              ),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+              const Flexible(flex: 1, child: SizedBox()),
+            ],
           ),
         ),
       ),

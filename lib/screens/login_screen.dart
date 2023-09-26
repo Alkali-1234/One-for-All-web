@@ -164,193 +164,203 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Scaffold(
             backgroundColor: Colors.transparent,
             body: SafeArea(
-              child: SizedBox(
-                width: double.infinity,
-                height: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 100),
-                      Text(
-                        "Log In",
-                        style: textTheme.displayLarge,
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 20),
-                      SizedBox(
-                        height: 40,
-                        child: TextField(
-                          onChanged: (value) => setState(() {
-                            emailQuery = value;
-                          }),
-                          style: textTheme.displaySmall,
-                          cursorColor: theme.onBackground,
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.only(left: 10),
-                            filled: true,
-                            fillColor: theme.primary.withOpacity(0.125),
-                            hintText: "Email",
-                            hintStyle: textTheme.displaySmall,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(color: Colors.transparent, width: 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Flexible(flex: 1, child: SizedBox()),
+                  Flexible(
+                    flex: 1,
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Log In",
+                              style: textTheme.displayLarge,
+                              textAlign: TextAlign.center,
                             ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(color: theme.onBackground, width: 1),
-                            ),
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(color: Colors.transparent, width: 0),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(color: Colors.transparent, width: 0),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      SizedBox(
-                        height: 40,
-                        child: TextField(
-                          onChanged: (value) => setState(() {
-                            passwordQuery = value;
-                          }),
-                          cursorColor: theme.onBackground,
-                          style: textTheme.displaySmall,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.only(left: 10),
-                            filled: true,
-                            fillColor: theme.primary.withOpacity(0.125),
-                            hintText: "Password",
-                            hintStyle: textTheme.displaySmall,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(color: Colors.transparent, width: 0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(color: theme.onBackground, width: 1),
-                            ),
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(color: Colors.transparent, width: 0),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(color: Colors.transparent, width: 0),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Checkbox(
-                                  side: BorderSide(color: Theme.of(context).colorScheme.onBackground),
-                                  value: saveCredentials,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      saveCredentials = value!;
-                                    });
-                                  }),
-                              Text("Remember me", style: textTheme.displaySmall)
-                            ],
-                          ),
-                          Text("", style: textTheme.displaySmall)
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      error != "" ? Text(error, style: textTheme.displaySmall!.copyWith(color: theme.error)) : Container(),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        children: [
-                          Flexible(
-                            flex: 1,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                gradient: getDefaultBluePrimaryGradient,
+                            const SizedBox(height: 20),
+                            SizedBox(
+                              height: 40,
+                              child: TextField(
+                                onChanged: (value) => setState(() {
+                                  emailQuery = value;
+                                }),
+                                style: textTheme.displaySmall,
+                                cursorColor: theme.onBackground,
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.only(left: 10),
+                                  filled: true,
+                                  fillColor: theme.primary.withOpacity(0.125),
+                                  hintText: "Email",
+                                  hintStyle: textTheme.displaySmall,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(color: Colors.transparent, width: 0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(color: theme.onBackground, width: 1),
+                                  ),
+                                  disabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(color: Colors.transparent, width: 0),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(color: Colors.transparent, width: 0),
+                                  ),
+                                ),
                               ),
-                              width: double.infinity,
-                              height: 40,
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.transparent,
-                                    shadowColor: Colors.transparent,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    if (isLoading == false) {
-                                      attemptLogin(context.read<AppState>());
-                                    }
-                                  },
-                                  child: isLoading
-                                      ? SizedBox(
-                                          height: 20,
-                                          width: 20,
-                                          child: CircularProgressIndicator(color: theme.onBackground),
-                                        )
-                                      : Text("Log In", style: textTheme.displaySmall!.copyWith(fontWeight: FontWeight.bold))),
                             ),
-                          ),
-                          const SizedBox(width: 5),
-
-                          Flexible(
-                            flex: 1,
-                            child: SizedBox(
-                              width: double.infinity,
+                            const SizedBox(height: 10),
+                            SizedBox(
                               height: 40,
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: theme.secondary,
-                                    shadowColor: Colors.transparent,
-                                    shape: RoundedRectangleBorder(
+                              child: TextField(
+                                onChanged: (value) => setState(() {
+                                  passwordQuery = value;
+                                }),
+                                cursorColor: theme.onBackground,
+                                style: textTheme.displaySmall,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.only(left: 10),
+                                  filled: true,
+                                  fillColor: theme.primary.withOpacity(0.125),
+                                  hintText: "Password",
+                                  hintStyle: textTheme.displaySmall,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(color: Colors.transparent, width: 0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(color: theme.onBackground, width: 1),
+                                  ),
+                                  disabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(color: Colors.transparent, width: 0),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: const BorderSide(color: Colors.transparent, width: 0),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Checkbox(
+                                        side: BorderSide(color: Theme.of(context).colorScheme.onBackground),
+                                        value: saveCredentials,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            saveCredentials = value!;
+                                          });
+                                        }),
+                                    Text("Remember me", style: textTheme.displaySmall)
+                                  ],
+                                ),
+                                Text("", style: textTheme.displaySmall)
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+                            error != "" ? Text(error, style: textTheme.displaySmall!.copyWith(color: theme.error)) : Container(),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                Flexible(
+                                  flex: 1,
+                                  child: Container(
+                                    decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(100),
+                                      gradient: getDefaultBluePrimaryGradient,
                                     ),
-                                    side: BorderSide(color: theme.tertiary),
+                                    width: double.infinity,
+                                    height: 40,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.transparent,
+                                          shadowColor: Colors.transparent,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          if (isLoading == false) {
+                                            attemptLogin(context.read<AppState>());
+                                          }
+                                        },
+                                        child: isLoading
+                                            ? SizedBox(
+                                                height: 20,
+                                                width: 20,
+                                                child: CircularProgressIndicator(color: theme.onBackground),
+                                              )
+                                            : Text("Log In", style: textTheme.displaySmall!.copyWith(fontWeight: FontWeight.bold))),
                                   ),
-                                  onPressed: () {
-                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const GetStartedScreen()));
-                                  },
-                                  child: Text("Create a new account", style: textTheme.displaySmall)),
-                            ),
-                          ),
-                          const SizedBox(width: 5),
+                                ),
+                                const SizedBox(width: 5),
 
-                          // Login as Guest
-                          Flexible(
-                            flex: 1,
-                            child: SizedBox(
-                                width: double.infinity,
-                                height: 40,
-                                child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: theme.secondary,
-                                      shadowColor: Colors.transparent,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(100),
-                                      ),
-                                      side: BorderSide(color: theme.tertiary),
-                                    ),
-                                    onPressed: () => loginAsGuest(context.read<AppState>()),
-                                    child: Text("Login as Guest", style: textTheme.displaySmall))),
-                          ),
-                        ],
-                      )
-                    ],
+                                Flexible(
+                                  flex: 1,
+                                  child: SizedBox(
+                                    width: double.infinity,
+                                    height: 40,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: theme.secondary,
+                                          shadowColor: Colors.transparent,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(100),
+                                          ),
+                                          side: BorderSide(color: theme.tertiary),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const GetStartedScreen()));
+                                        },
+                                        child: Text("Create a new account", style: textTheme.displaySmall)),
+                                  ),
+                                ),
+                                const SizedBox(width: 5),
+
+                                // Login as Guest
+                                Flexible(
+                                  flex: 1,
+                                  child: SizedBox(
+                                      width: double.infinity,
+                                      height: 40,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: theme.secondary,
+                                            shadowColor: Colors.transparent,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(100),
+                                            ),
+                                            side: BorderSide(color: theme.tertiary),
+                                          ),
+                                          onPressed: () => loginAsGuest(context.read<AppState>()),
+                                          child: Text("Login as Guest", style: textTheme.displaySmall))),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  const Flexible(flex: 1, child: SizedBox()),
+                ],
               ),
             )));
   }

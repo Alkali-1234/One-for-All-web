@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:oneforall/constants.dart';
 import 'package:oneforall/main.dart';
 import 'package:oneforall/service/files_service.dart';
-import 'package:oneforall/service/firebase_api.dart';
+// import 'package:oneforall/service/firebase_api.dart';
 //ignore: unused_import
 import 'package:shared_preferences/shared_preferences.dart';
 import '../data/user_data.dart';
@@ -168,7 +168,7 @@ Future login(String email, String password, bool saveCredentials, AppState appSt
   //if my hypothesis is correct, this should be null
   print(appState.getMabData?.posts);
 
-  final assignedSection = appState.getCurrentUser.assignedSection != "0" ? appState.getCurrentUser.assignedSection![0] : "";
+  // final assignedSection = appState.getCurrentUser.assignedSection != "0" ? appState.getCurrentUser.assignedSection![0] : "";
 
   //* initialize FCM
   // await initializeFCM(assignedCommunity, assignedSection);

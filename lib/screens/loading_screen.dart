@@ -8,7 +8,7 @@ import '../main.dart';
 import 'login_screen.dart';
 import 'get_started.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../banner_ad.dart';
+// import '../banner_ad.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key, required this.appstate});
@@ -23,7 +23,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
   String loadingDots = ".";
   Icon? loadingStatus;
 
-  void pushToPage(Widget page) {
+  void pushToPage(Widget page) async {
+    await showDialog(context: context, builder: (context) => const WarningDialog());
+    if (!mounted) return;
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => page));
     return;
   }
@@ -127,6 +129,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       verbose = "Finished!";
     });
     await Future.delayed(const Duration(seconds: 1));
+    if (!mounted) return;
     pushToPage(const HomePage());
   }
 
@@ -149,27 +152,69 @@ class _LoadingScreenState extends State<LoadingScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const BannerAdWidget(),
-              Column(
-                children: [
-                  Text(
-                    'Loading $loadingDots',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                  ),
-                  Text(
-                    verbose,
-                    style: const TextStyle(color: Colors.white, fontSize: 20),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text("Build: $buildNumber", style: const TextStyle(color: Colors.white, fontSize: 10)),
-                ],
+              Text(
+                'Loading $loadingDots',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
               ),
-              const BannerAdWidget(),
+              Text(
+                verbose,
+                style: const TextStyle(color: Colors.white, fontSize: 20),
+                textAlign: TextAlign.center,
+              ),
+              Text("Build: $buildNumber", style: const TextStyle(color: Colors.white, fontSize: 10)),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class WarningDialog extends StatefulWidget {
+  const WarningDialog({super.key});
+
+  @override
+  State<WarningDialog> createState() => _WarningDialogState();
+}
+
+class _WarningDialogState extends State<WarningDialog> {
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.black,
+          border: Border.all(color: Colors.white),
+        ),
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              "Warning",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              "This web version is designed to work only on desktops with a large and horizontal screens. This web version is not the final version of the actual app. And support for it may be late or some features may not be supported, as Flutter does not fully support web and desktop. If you are using on mobile. Please use the designated application for your platform.",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white.withOpacity(0.125),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("I understand and wish to proceed.", style: TextStyle(color: Colors.white)),
+            ),
+          ],
         ),
       ),
     );

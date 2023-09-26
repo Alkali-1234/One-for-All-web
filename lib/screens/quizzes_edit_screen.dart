@@ -396,7 +396,8 @@ class QueryListItem extends StatelessWidget {
                 icon: const Icon(Icons.delete),
                 label: const Text("Delete")),
           ],
-        )
+        ),
+        const SizedBox(height: 10),
       ],
     );
   }

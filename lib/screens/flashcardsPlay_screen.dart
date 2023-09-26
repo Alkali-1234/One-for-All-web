@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:oneforall/banner_ad.dart';
+// import 'package:oneforall/banner_ad.dart';
 import 'package:oneforall/constants.dart';
 import 'package:oneforall/interstitial_ad.dart';
 import 'package:provider/provider.dart';
